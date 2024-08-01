@@ -6,6 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import "./tailwind.css";
+import { NextUIProvider } from "@nextui-org/react";
 import Nav from "./components/nav";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -17,11 +18,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        <Nav />
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+      <body
+      className="dark"
+      >
+        <NextUIProvider>
+          <Nav />
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </NextUIProvider>
       </body>
     </html>
   );

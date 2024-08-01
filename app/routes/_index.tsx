@@ -1,5 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
+import { Tabs, Tab } from "@nextui-org/tabs";
 import Bedrock from "~/components/bedrock";
+import Java from "~/components/java";
 
 
 export const meta: MetaFunction = () => {
@@ -27,7 +29,17 @@ export default function Index() {
           </p>
         </div>
       </div>
-        <Bedrock />
+      <Tabs
+      variant="light"
+      className="w-full mt-4"
+      >
+        <Tab title="Java">
+          <Java />
+        </Tab>
+        <Tab title="Bedrock">
+          <Bedrock />
+        </Tab>
+      </Tabs>
     </main>
   );
 }

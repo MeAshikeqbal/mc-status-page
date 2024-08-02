@@ -13,7 +13,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className="mx-auto max-w-7xl mt-2 p-2">
+    <>
       <div className="relative">
         <img
           src="/mcgameplay.png"
@@ -40,6 +40,6 @@ export default function Index() {
           <Bedrock />
         </Tab>
       </Tabs>
-    </main>
+    </>
   );
 }

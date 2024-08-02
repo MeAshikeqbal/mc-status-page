@@ -23,7 +23,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <NextUIProvider>
           <Nav />
+          <main
+          className="mx-auto max-w-7xl mt-2 p-2"
+          >
           {children}
+          </main>
           <ScrollRestoration />
           <Scripts />
         </NextUIProvider>

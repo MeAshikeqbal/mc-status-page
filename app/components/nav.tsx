@@ -21,6 +21,9 @@ export default function Nav() {
                         <NavLink to="/">Home</NavLink>
                     </NavbarItem>
                     <NavbarItem>
+                        <NavLink to="/players">Players List</NavLink>
+                    </NavbarItem>
+                    <NavbarItem>
                         <NavLink to="/map">Map</NavLink>
                     </NavbarItem>
                 </NavbarContent>

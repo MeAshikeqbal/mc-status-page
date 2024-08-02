@@ -3,8 +3,25 @@ import { Chip, Snippet, Table, TableHeader, TableColumn, TableBody, TableRow, Ta
 
 
 
+interface Version {
+    name_raw: string;
+    name_clean: string;
+    name_html: string;
+    protocol: number;
+}
+
+interface Players {
+    online: number;
+    max: number;
+    list: unknown[];
+}
+interface Motd {
+    raw: string;
+    clean: string;
+    html: string;
+}
+
 interface ServerStatus {
-    edition: string;
     online: boolean;
     host: string;
     port: number;
@@ -12,23 +29,16 @@ interface ServerStatus {
     eula_blocked: boolean;
     retrieved_at: number;
     expires_at: number;
-    players?: {
-        online: number;
-        max: number;
-    };
-    motd?: {
-        raw: string;
-        clean: string;
-        html: string;
-    };
-    version?: {
-        name: string;
-        protocol: number;
-    };
-    gamemode: string;
+    srv_record: string | null;
+    version: Version;
+    players: Players;
+    motd: Motd;
+    icon: string | null;
+    mods: unknown[];
+    software: string | null;
+    plugins: unknown[];
 }
-
-export default function Java() {
+export default function Bedrock() {
     const [serverStatus, setServerStatus] = useState<null | ServerStatus>(null);
 
     useEffect(() => {
@@ -39,7 +49,7 @@ export default function Java() {
                 .catch(error => console.error('Error fetching Bedrock server status:', error));
         };
         fetchServerStatus();
-        const intervalId = setInterval(fetchServerStatus, 60);
+        const intervalId = setInterval(fetchServerStatus, 60000);
         return () => clearInterval(intervalId);
     }, []);
 
@@ -70,7 +80,7 @@ export default function Java() {
                                 </TableRow>
                                 <TableRow key="2">
                                     <TableCell>
-                                        Server Info:
+                                        Port:
                                     </TableCell>
                                     <TableCell>
                                         <Snippet
@@ -100,7 +110,7 @@ export default function Java() {
                                     </TableCell>
                                     <TableCell>
                                         <Chip
-                                            color= {serverStatus.online ? 'success' : 'danger' }
+                                            color={serverStatus.online ? 'success' : 'danger'}
                                             radius="md"
                                         >
                                             {serverStatus.online ? 'Online' : 'Offline'}
@@ -113,7 +123,7 @@ export default function Java() {
                                     </TableCell>
                                     <TableCell>
                                         <Chip
-                                            color= {serverStatus.online ? 'success' : 'danger' }
+                                            color={serverStatus.online ? 'success' : 'danger'}
                                             radius="md"
                                         >
                                             {serverStatus.players ? `${serverStatus.players.online}/${serverStatus.players.max}` : 'N/A'}
@@ -127,10 +137,114 @@ export default function Java() {
                                     <TableCell>
 
                                         <Chip
-                                            color= {serverStatus.online ? 'success' : 'danger' }
+                                            color={serverStatus.online ? 'success' : 'danger'}
                                             radius="md"
                                         >
-                                            {serverStatus.version ? serverStatus.version.name : 'N/A'}
+                                            {serverStatus.version ? serverStatus.version.name_raw : 'N/A'}
+                                        </Chip>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow key="8">
+                                    <TableCell>
+                                        Edition :
+                                    </TableCell>
+                                    <TableCell>
+                                        <Chip
+                                            color={serverStatus.online ? 'success' : 'danger'}
+                                            radius="md"
+                                        >
+                                            {serverStatus.online ? serverStatus.eula_blocked ? 'yes' : 'no' : 'N/A'}
+                                        </Chip>
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table >
+                    </div>
+                ) : (
+                    <div
+                        className='bg-[#191919] rounded-b-lg p-3'
+                    >
+                        <Table hideHeader removeWrapper aria-label="Server Info" >
+                            <TableHeader>
+                                <TableColumn>NAME</TableColumn>
+                                <TableColumn>INFO</TableColumn>
+                            </TableHeader>
+                            <TableBody>
+                                <TableRow key="1">
+                                    <TableCell>
+                                        Host:
+                                    </TableCell>
+                                    <TableCell>
+                                        <Snippet
+                                            symbol=">"
+                                        >
+
+                                        </Snippet>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow key="2">
+                                    <TableCell>
+                                        Server Info:
+                                    </TableCell>
+                                    <TableCell>
+                                        <Snippet
+                                            symbol=">"
+                                        >
+
+                                        </Snippet>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow key="3">
+                                    <TableCell>
+                                        Moted :
+                                    </TableCell>
+                                    <TableCell>
+
+                                        <pre
+                                            className=' bg-black rounded text-white p-1 flex items-center max-w-72'
+                                        >
+
+                                        </pre>
+                                    </TableCell>
+                                </TableRow>
+
+                                <TableRow key="4">
+                                    <TableCell>
+                                        Server Status :
+                                    </TableCell>
+                                    <TableCell>
+                                        <Chip
+                                            color='success'
+                                            radius="md"
+                                        >
+
+                                        </Chip>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow key="5">
+                                    <TableCell>
+                                        Players Online :
+                                    </TableCell>
+                                    <TableCell>
+                                        <Chip
+                                            color='success'
+                                            radius="md"
+                                        >
+
+                                        </Chip>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow key="6">
+                                    <TableCell>
+                                        Version :
+                                    </TableCell>
+                                    <TableCell>
+
+                                        <Chip
+                                            color='success'
+                                            radius="md"
+                                        >
+
                                         </Chip>
                                     </TableCell>
                                 </TableRow>
@@ -141,134 +255,16 @@ export default function Java() {
                                     <TableCell>
 
                                         <Chip
-                                            color= {serverStatus.online ? 'success' : 'danger' }
+                                            color='success'
                                             radius="md"
                                         >
-                                            {serverStatus.gamemode ?serverStatus.gamemode : 'N/A'}
-                                        </Chip>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow key="8">
-                                    <TableCell>
-                                        Edition :
-                                    </TableCell>
-                                    <TableCell>
-                                        <Chip
-                                            color= {serverStatus.online ? 'success' : 'danger' }
-                                            radius="md"
-                                        >
-                                            {serverStatus.edition ? serverStatus.edition : 'N/A'}
+
                                         </Chip>
                                     </TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table >
                     </div>
-                ) : (
-                    <div
-                    className='bg-[#191919] rounded-b-lg p-3'
-                >
-                    <Table hideHeader removeWrapper aria-label="Server Info" >
-                        <TableHeader>
-                            <TableColumn>NAME</TableColumn>
-                            <TableColumn>INFO</TableColumn>
-                        </TableHeader>
-                        <TableBody>
-                            <TableRow key="1">
-                                <TableCell>
-                                    Host:
-                                </TableCell>
-                                <TableCell>
-                                    <Snippet
-                                        symbol=">"
-                                    >
-                                        
-                                    </Snippet>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key="2">
-                                <TableCell>
-                                    Server Info:
-                                </TableCell>
-                                <TableCell>
-                                    <Snippet
-                                        symbol=">"
-                                    >
-                                        
-                                    </Snippet>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key="3">
-                                <TableCell>
-                                    Moted :
-                                </TableCell>
-                                <TableCell>
-
-                                    <pre
-                                        className=' bg-black rounded text-white p-1 flex items-center max-w-72'
-                                    >
-                                        
-                                    </pre>
-                                </TableCell>
-                            </TableRow>
-
-                            <TableRow key="4">
-                                <TableCell>
-                                    Server Status :
-                                </TableCell>
-                                <TableCell>
-                                    <Chip
-                                        color='success'
-                                        radius="md"
-                                    >
-                                        
-                                    </Chip>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key="5">
-                                <TableCell>
-                                    Players Online :
-                                </TableCell>
-                                <TableCell>
-                                    <Chip
-                                        color='success'
-                                        radius="md"
-                                    >
-                                        
-                                    </Chip>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key="6">
-                                <TableCell>
-                                    Version :
-                                </TableCell>
-                                <TableCell>
-
-                                    <Chip
-                                        color='success'
-                                        radius="md"
-                                    >
-                                        
-                                    </Chip>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key="7">
-                                <TableCell>
-                                    Gamemode :
-                                </TableCell>
-                                <TableCell>
-
-                                    <Chip
-                                        color='success'
-                                        radius="md"
-                                    >
-                                       
-                                    </Chip>
-                                </TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table >
-                </div>
 
                 )}
             </aside>

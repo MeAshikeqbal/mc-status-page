@@ -2,9 +2,23 @@ import { useEffect, useState } from 'react';
 import { Chip, Snippet, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 
 
+interface Version {
+    name: string;
+    protocol: number;
+}
+
+interface Players {
+    online: number;
+    max: number;
+}
+
+interface Motd {
+    raw: string;
+    clean: string;
+    html: string;
+}
 
 interface ServerStatus {
-    edition: string;
     online: boolean;
     host: string;
     port: number;
@@ -12,20 +26,12 @@ interface ServerStatus {
     eula_blocked: boolean;
     retrieved_at: number;
     expires_at: number;
-    players?: {
-        online: number;
-        max: number;
-    };
-    motd?: {
-        raw: string;
-        clean: string;
-        html: string;
-    };
-    version?: {
-        name: string;
-        protocol: number;
-    };
+    version: Version;
+    players: Players;
+    motd: Motd;
     gamemode: string;
+    server_id: string;
+    edition: string;
 }
 
 export default function Bedrock() {
@@ -39,7 +45,7 @@ export default function Bedrock() {
                 .catch(error => console.error('Error fetching Bedrock server status:', error));
         };
         fetchServerStatus();
-        const intervalId = setInterval(fetchServerStatus, 60);
+        const intervalId = setInterval(fetchServerStatus, 60000);
         return () => clearInterval(intervalId);
     }, []);
 
@@ -70,7 +76,7 @@ export default function Bedrock() {
                                 </TableRow>
                                 <TableRow key="2">
                                     <TableCell>
-                                        Server Info:
+                                        Port:
                                     </TableCell>
                                     <TableCell>
                                         <Snippet
@@ -144,7 +150,7 @@ export default function Bedrock() {
                                             color= {serverStatus.online ? 'success' : 'danger' }
                                             radius="md"
                                         >
-                                            {serverStatus.gamemode ?serverStatus.gamemode : 'N/A'}
+                                            {serverStatus.gamemode ? serverStatus.gamemode : 'N/A'}
                                         </Chip>
                                     </TableCell>
                                 </TableRow>
@@ -182,7 +188,6 @@ export default function Bedrock() {
                                     <Snippet
                                         symbol=">"
                                     >
-                                        
                                     </Snippet>
                                 </TableCell>
                             </TableRow>

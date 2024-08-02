@@ -1,4 +1,8 @@
 export default function Map() {
+    const isServer = typeof window === "undefined";
+    if (isServer) {
+        return null
+    }
     return (
         <>
             <iframe

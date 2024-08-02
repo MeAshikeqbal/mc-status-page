@@ -91,7 +91,6 @@ export default function Bedrock() {
                                         Moted :
                                     </TableCell>
                                     <TableCell>
-
                                         <pre
                                             className=' bg-black rounded text-white p-1 flex items-center max-w-72'
                                         >

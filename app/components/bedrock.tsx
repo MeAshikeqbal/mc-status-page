@@ -80,20 +80,20 @@ export default function Bedrock() {
                         <TableRow key="1">
                             <TableCell>Host:</TableCell>
                             <TableCell>
-                                <Snippet symbol=">">{serverStatus?.host}</Snippet>
+                                <Snippet symbol=">">{serverStatus?.host || 'N/A'}</Snippet>
                             </TableCell>
                         </TableRow>
                         <TableRow key="2">
                             <TableCell>Port:</TableCell>
                             <TableCell>
-                                <Snippet symbol=">">{serverStatus?.port}</Snippet>
+                                <Snippet symbol=">">{serverStatus?.port || 'N/A'}</Snippet>
                             </TableCell>
                         </TableRow>
                         <TableRow key="3">
                             <TableCell>Motd:</TableCell>
                             <TableCell>
                                 <pre className='bg-black rounded text-white p-1 flex items-center max-w-72'>
-                                    <div dangerouslySetInnerHTML={{ __html: serverStatus?.motd.html || "We are offline" }} />
+                                    <div dangerouslySetInnerHTML={{ __html: serverStatus?.motd?.html || "We are offline" }} />
                                 </pre>
                             </TableCell>
                         </TableRow>
@@ -117,7 +117,7 @@ export default function Bedrock() {
                             <TableCell>Version:</TableCell>
                             <TableCell>
                                 <Chip color={serverStatus?.online ? 'success' : 'danger'} radius="md">
-                                    {serverStatus?.version.name || 'N/A'}
+                                    {serverStatus?.version?.name || 'N/A'}
                                 </Chip>
                             </TableCell>
                         </TableRow>

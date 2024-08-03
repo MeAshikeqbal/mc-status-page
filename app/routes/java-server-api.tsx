@@ -33,8 +33,29 @@ interface ServerStatus {
 }
 
 export const loader: LoaderFunction = async () => {
-    const response = await fetch('https://api.mcstatus.io/v2/status/java/cmc.cappybaralab.me:45262');
-    const data: ServerStatus = await response.json();
+    try {
+        const response = await fetch(`https://api.mcstatus.io/v2/status/java/${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}`);
 
-    return json(data);
+        if (!response.ok) {
+            throw new Error(`Error fetching server status: ${response.statusText}`);
+        }
+
+        const data: ServerStatus = await response.json();
+
+        if (!data.online) {
+            return json({
+                online: false,
+                message: "The server is currently offline.",
+            });
+        }
+
+        return json(data);
+
+    } catch (error) {
+        return json({
+            online: false,
+            message: "Failed to fetch server status.",
+            error: (error as Error).message,
+        });
+    }
 };

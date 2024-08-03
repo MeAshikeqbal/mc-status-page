@@ -24,7 +24,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <NextUIProvider>
           <Nav />
           <main
-          className="mx-auto max-w-7xl pt-1.5 pb-4 px-4 sm:px-6 lg:px-8"
+          className="mx-auto max-w-7xl pt-1.5 pb-4 px-4 sm:px-4 lg:px-8"
           >
           {children}
           </main>

@@ -1,41 +1,56 @@
-# Welcome to Remix!
-
-- 📖 [Remix docs](https://remix.run/docs)
-
-## Development
-
-Run the dev server:
-
-```shellscript
-npm run dev
-```
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
 # mc-status-page
+A simple Minecraft server status page with BlueMap integration
+
+## Features
+- Show server status (with all the relevant information)
+- Show server player list (with player count)
+- Show blue map
+
+## Requirements
+### Minecraft Server required plugins
+- [Bluemap](https://bluemap.bluecolored.de/)
+
+## Configuration
+Create a `.env` file in the root directory with the following content
+```env
+SERVER_ADDRESS=cmc.cappybaralab.me
+SERVER_PORT=45262
+BLUEMAP_ADDRESS=cmcmap.cappybaralab.me
+```
+
+## How to use
+1. Clone the repo
+2. Run `npm install`
+3. Run `npm run build`
+4. Run `npm run start`
+5. Open `http://localhost:3000` in your browser
+
+## How to deploy as docker container
+1. pull the image `docker pull ghcr.io/meashikeqbal/mc-status-page:0.0.1`
+2. Run the container
+ ``` bash
+ docker run -d -p 3000:3000 -e SERVER_ADDRESS=cmc.cappybaralab.me -e SERVER_PORT=45262 -e BLUEMAP_ADDRESS=cmcmap.cappybaralab.me ghcr.io/meashikeqbal/mc-status-page:0.0.1
+ ```
+3. Open `http://localhost:3000` in your browser
+
+### Example docker-compose.yml
+```yml
+version: '3.3'
+services:
+  mc-status-page:
+    image: ghcr.io/meashikeqbal/mc-status-page:0.0.1
+    container_name: mc-status-page
+    environment:
+      - SERVER_ADDRESS=cmc.cappybaralab.me
+      - SERVER_PORT=45262
+      - BLUEMAP_ADDRESS=cmcmap.cappybaralab.me
+    ports:
+      - "3000:3000"
+```
+
+## Screenshots
+![image](/public/Screenshot.png)
+
+## Credits
+- [Minecraft Server Status](mcstatus.io)
+- [BlueMap](https://bluemap.bluecolored.de/)

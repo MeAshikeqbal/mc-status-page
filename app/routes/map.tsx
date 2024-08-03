@@ -40,7 +40,7 @@ export default function Map() {
                 src={`https://${BLUEMAP_ADDRESS}`}
                 width={window.innerWidth}
                 height={window.innerHeight}
-                className="absolute inset-0 pt-16"
+                className="absolute inset-0 pt-16 pb-10"
             ></iframe>
         </>
     )

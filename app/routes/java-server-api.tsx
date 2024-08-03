@@ -34,7 +34,14 @@ interface ServerStatus {
 
 export const loader: LoaderFunction = async () => {
     try {
-        const response = await fetch(`https://api.mcstatus.io/v2/status/java/${process.env.SERVER_ADDRESS}`);
+        const serverAddress = process.env.JAVA_SERVER_ADDRESS;
+        const serverPort = process.env.JAVA_SERVER_PORT;
+
+        const url = serverPort
+            ? `https://api.mcstatus.io/v2/status/java/${serverAddress}:${serverPort}`
+            : `https://api.mcstatus.io/v2/status/java/${serverAddress}`;
+
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error(`Error fetching server status: ${response.statusText}`);

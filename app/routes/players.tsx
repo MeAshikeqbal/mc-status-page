@@ -51,9 +51,9 @@ export default function Players() {
 
     useEffect(() => {
         const fetchPlayers = async () => {
-            setLoading(true);
-            setError(null);
             try {
+                setLoading(true);
+                setError(null);
                 const response = await fetch('/players-api');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -103,14 +103,12 @@ export default function Players() {
     if (error) {
         return (
             <div className="mb-4">
-                <h2 className="text-2xl font-bold">Online Player List</h2>
-                <p 
-                className="mt-2 text-sm text-red-500"
-                >
-                    
-                    Maybe the server is offline or there was an error processing the request.
-                    
+                <h2 className="text-2xl font-bold mb-2">Online Player List</h2>
+                <div className="flex items-center justify-center h-40">
+                    <p className="text-sm text-red-500 text-center">
+                        Maybe the server is offline or there was an error processing the request.
                     </p>
+                </div>
             </div>
         );
     }
@@ -124,7 +122,7 @@ export default function Players() {
                     <p className="text-sm text-gray-500">
                         There are currently &nbsp;
                         <span className="font-bold">
-                          {playersData?.onlineCount} of 100
+                            {playersData?.onlineCount} of 100
                         </span>
                         &nbsp; players online.
                     </p>

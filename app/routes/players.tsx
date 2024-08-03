@@ -1,5 +1,26 @@
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/table";
+import { MetaFunction } from "@remix-run/react";
 import { useEffect, useState } from "react";
+
+export const meta : MetaFunction = () => {
+    return [
+        {
+            title: "Players",
+        },
+        {
+            name: "description",
+            content: "List of players on the CMC Minecraft server",
+        },
+        {
+            name: "keywords",
+            content: "minecraft, players, cmc, server",
+        },
+        {
+            property: "og:title",
+            content: "Players",
+        },
+    ];
+};
 
 interface Player {
     uuid: string;

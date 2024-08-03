@@ -46,36 +46,49 @@ export default function Players() {
 
     if (!playersData) {
         return <div>
-            <h2 className="text-2xl font-bold">Online Player List</h2>
-            <p className="text-sm text-gray-400">Loading...</p>
+            <div
+                className="mb-4"
+            >
+
+                <h2 className="text-2xl font-bold">Online Player List</h2>
+                <p className="text-sm text-gray-500">
+                    Loading...
+                </p>
+            </div>
             <Table aria-label="players">
-                    <TableHeader>
-                        <TableColumn>Player Head</TableColumn>
-                        <TableColumn>Player Username</TableColumn>
-                    </TableHeader>
-                    <TableBody emptyContent={"No one online"}>
-                            <TableRow key="1">
-                                <TableCell>
-                                    Loading...
-                                </TableCell>
-                                <TableCell>
-                                    Loading...
-                                </TableCell>
-                            </TableRow>
-                    </TableBody>
-                </Table>
+                <TableHeader>
+                    <TableColumn>Player Head</TableColumn>
+                    <TableColumn>Player Username</TableColumn>
+                </TableHeader>
+                <TableBody emptyContent={"No one online"}>
+                    <TableRow key="1">
+                        <TableCell>
+                            Loading...
+                        </TableCell>
+                        <TableCell>
+                            Loading...
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
         </div>;
     }
 
     return (
         <>
             <div>
-                <h2 className="text-2xl font-bold">Online Player List</h2>
-                <p
-                className="text-sm text-gray-400"
+                <div
+                    className="mb-4"
                 >
-                    There are currently {playersData.onlineCount} players online out of 100 possible.
-                </p>
+                    <h2 className="text-2xl font-bold">Online Player List</h2>
+                    <p className="text-sm text-gray-500">
+                        There are currently &nbsp;
+                        <span className="font-bold">
+                          {playersData.onlineCount} of 100
+                        </span>
+                        &nbsp; players online.
+                    </p>
+                </div>
                 <Table aria-label="players">
                     <TableHeader>
                         <TableColumn>Player Head</TableColumn>

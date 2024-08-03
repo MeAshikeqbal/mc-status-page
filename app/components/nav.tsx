@@ -16,7 +16,6 @@ export default function Nav() {
                         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                         className="sm:hidden"
                     />
-
                     <NavbarBrand
                         className="flex justify-between items-center p-5 mx-auto max-w-7xl"
                     >

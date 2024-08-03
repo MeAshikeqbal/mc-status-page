@@ -10,7 +10,7 @@ export default function Map() {
                 src="https://cmcmap.cappybaralab.me"
                 width={window.innerWidth}
                 height={window.innerHeight}
-                className="absolute inset-0"
+                className="absolute inset-0 pt-16"
                 ></iframe>
         </>
     )

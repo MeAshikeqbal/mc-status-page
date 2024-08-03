@@ -1,10 +1,11 @@
-import { MetaFunction } from "@remix-run/node";
+import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
-    return[
+    return [
         {
             title: "CMC Map"
-            
+
         },
         {
             name: "description",
@@ -20,21 +21,27 @@ export const meta: MetaFunction = () => {
         }
     ]
 }
+export const loader: LoaderFunction = async () => {
+    const BLUEMAP_ADDRESS = process.env.BLUEMAP_ADDRESS;
+    return json({ BLUEMAP_ADDRESS });
+};
 
 export default function Map() {
+    const { BLUEMAP_ADDRESS } = useLoaderData() as { BLUEMAP_ADDRESS: string };
+
     const isServer = typeof window === "undefined";
     if (isServer) {
-        return null
+        return null;
     }
     return (
         <>
             <iframe
                 title="CMC Map"
-                src="https://cmcmap.cappybaralab.me"
+                src={`http://${BLUEMAP_ADDRESS}`}
                 width={window.innerWidth}
                 height={window.innerHeight}
                 className="absolute inset-0 pt-16"
-                ></iframe>
+            ></iframe>
         </>
     )
 }

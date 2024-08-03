@@ -69,7 +69,9 @@ export default function Bedrock() {
     }
 
     return (
-        <aside>
+        <aside
+        className='mb-10'
+        >
             <div className='bg-[#191919] rounded-b-lg p-3'>
                 <Table hideHeader removeWrapper aria-label="Server Info">
                     <TableHeader>

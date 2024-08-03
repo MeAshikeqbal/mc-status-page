@@ -37,7 +37,7 @@ export default function Map() {
         <>
             <iframe
                 title="CMC Map"
-                src={`http://${BLUEMAP_ADDRESS}`}
+                src={`https://${BLUEMAP_ADDRESS}`}
                 width={window.innerWidth}
                 height={window.innerHeight}
                 className="absolute inset-0 pt-16"

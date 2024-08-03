@@ -6,8 +6,8 @@ import Java from "~/components/java";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "The Boys MC" },
+    { name: "description", content: "The boys MC server info" },
   ];
 };
 

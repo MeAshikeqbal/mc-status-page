@@ -17,7 +17,7 @@ export default function Index() {
     <>
       <div className="relative">
         <img
-          src="/mcgameplay.png"
+          src="/mcgameplay.webp"
           alt="Minecraft Gameplay"
           className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-t-lg blur-sm"
         />

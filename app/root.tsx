@@ -8,6 +8,7 @@ import {
 import "./tailwind.css";
 import { NextUIProvider } from "@nextui-org/react";
 import Nav from "./components/nav";
+import Footer from "./components/footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -28,6 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           >
           {children}
           </main>
+          <Footer />
           <ScrollRestoration />
           <Scripts />
         </NextUIProvider>

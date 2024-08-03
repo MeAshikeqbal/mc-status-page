@@ -8,6 +8,7 @@ export const meta: MetaFunction = () => {
   return [
     { title: "The Boys MC" },
     { name: "description", content: "The boys MC server info" },
+    { name: "keywords", content: "minecraft, server"},
   ];
 };
 
@@ -18,7 +19,7 @@ export default function Index() {
         <img
           src="/mcgameplay.png"
           alt="Minecraft Gameplay"
-          className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-t-lg"
+          className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-t-lg blur-sm"
         />
         <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8 p-3 bg-black bg-opacity-25 rounded">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-300">

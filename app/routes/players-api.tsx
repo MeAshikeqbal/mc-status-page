@@ -3,7 +3,7 @@ import { json, LoaderFunction } from '@remix-run/node';
 export const loader: LoaderFunction = async () => {
   try {
 
-    const blueMapAddress = process.env.REACT_APP_BLUEMAP_ADDRESS;
+    const blueMapAddress = process.env.BLUEMAP_ADDRESS;
     const blueMapPlayers = `https://${blueMapAddress}/maps/world/live/players.json`;
     if (!blueMapAddress) {
       throw new Error('REACT_APP_BLUEMAP_ADDRESS environment variable is not set');

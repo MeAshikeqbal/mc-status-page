@@ -34,7 +34,7 @@ interface ServerStatus {
 
 export const loader: LoaderFunction = async () => {
     try {
-        const response = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}`);
+        const response = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${process.env.SERVER_ADDRESS}:${process.env.SERVER_PORT}`);
 
         if (!response.ok) {
             throw new Error(`Error fetching server status: ${response.statusText}`);

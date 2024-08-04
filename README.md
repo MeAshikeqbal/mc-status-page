@@ -48,8 +48,10 @@ services:
     image: ghcr.io/meashikeqbal/mc-status-page:0.0.1
     container_name: mc-status-page
     environment:
-      - SERVER_ADDRESS=cmc.cappybaralab.me
-      - SERVER_PORT=45262
+      - JAVA_SERVER_ADDRESS=cmc.cappybaralab.me
+      - JAVA_SERVER_PORT=45262
+      - BEDROCK_SERVER_ADDRESS=cmc.cappybaralab.me
+      - BEDROCK_SERVER_PORT=45262
       - BLUEMAP_ADDRESS=cmcmap.cappybaralab.me
     ports:
       - "3000:3000"

@@ -33,10 +33,16 @@ BEDROCK_SERVER_PORT=45262
 5. Open `http://localhost:3000` in your browser
 
 ## How to deploy as docker container
-1. pull the image `docker pull ghcr.io/meashikeqbal/mc-status-page:0.0.1`
+1. pull the image `docker pull ghcr.io/meashikeqbal/mc-status-page:latest`
 2. Run the container
  ``` bash
- docker run -d -p 3000:3000 -e SERVER_ADDRESS=cmc.cappybaralab.me -e SERVER_PORT=45262 -e BLUEMAP_ADDRESS=cmcmap.cappybaralab.me ghcr.io/meashikeqbal/mc-status-page:0.0.1
+ docker run -d -p 3000:3000 \
+  -e JAVA_SERVER_ADDRESS=cmc.cappybaralab.me \
+  -e JAVA_SERVER_PORT=45262 \
+  -e BEDROCK_SERVER_ADDRESS=cmc.cappybaralab.me \
+  -e BEDROCK_SERVER_PORT=45262 \
+  -e BLUEMAP_ADDRESS=cmcmap.cappybaralab.me \
+  ghcr.io/meashikeqbal/mc-status-page:latest
  ```
 3. Open `http://localhost:3000` in your browser
 

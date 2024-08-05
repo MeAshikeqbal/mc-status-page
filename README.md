@@ -42,10 +42,10 @@ BEDROCK_SERVER_PORT=45262
 
 ### Example docker-compose.yml
 ```yml
-version: '3.3'
+version: '3.8'
 services:
   mc-status-page:
-    image: ghcr.io/meashikeqbal/mc-status-page:0.0.1
+    image: ghcr.io/meashikeqbal/mc-status-page:latest
     container_name: mc-status-page
     environment:
       - JAVA_SERVER_ADDRESS=cmc.cappybaralab.me

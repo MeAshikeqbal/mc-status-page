@@ -67,5 +67,5 @@ services:
 ![image](/public/Screenshot.png)
 
 ## Credits
-- [Minecraft Server Status](mcstatus.io)
+- [Minecraft Server Status](https://mcstatus.io)
 - [BlueMap](https://bluemap.bluecolored.de/)
